@@ -7,8 +7,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
+    /* 
     @Test void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    }*/
+
+    @Test void probar_ValAbs(){
+        App calculo = new App();
+        int res_val_ab = calculo.ValAbs(-5);
+
+        //se evalua el valor esperado con assertEquals
+        assertEquals(5, res_val_ab, "El valor absoluto de -5 es 5");
+
     }
+
+
+
 }

@@ -4,9 +4,25 @@
 package java_grandle;
 
 public class App {
+    
     public String getGreeting() {
         return "Hello World!";
     }
+
+    public int ValAbs(int nro){
+        int val_ret = nro;
+        if (nro < 0) 
+            val_ret = nro * -1;
+
+        return val_ret;
+    }
+
+    /*     
+    public double Obtener_litros(int cms_cub){
+        //ponga su código acá
+    }
+    */
+
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
