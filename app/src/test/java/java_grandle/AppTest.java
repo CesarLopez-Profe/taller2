@@ -3,8 +3,15 @@
  */
 package java_grandle;
 
+//Se usan para la ejecución de los assertion bajo @Test
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+//Se usan para invocar las pruebas de archivos
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 class AppTest {
     /* 
@@ -22,6 +29,48 @@ class AppTest {
 
     }
 
+    //Test de archivos
+    @Test void probar_arch_suma() throws IOException {
+        
+        try {
 
+            // Obtener el archivo desde el classpath
+            Path path = Paths.get(getClass().getClassLoader().getResource("vtas.txt").toURI());
+
+            // Crear instancia de la clase a probar
+            App calculo = new App();
+            int total = calculo.Sumar_vtas(path.toString());
+            
+            
+            // Verificar el resultado
+            assertEquals(100, total, "El total de la suma de los registros del archivo es 100");
+
+        } catch (Exception e) {
+            fail("Se presentó un error y hubo una excepción\n" + e);
+        }
+    
+    }
+
+     
+
+    @Test void probar_arch_vacio(){
+        try {
+
+            // Obtener el archivo desde el classpath
+            Path path = Paths.get(getClass().getClassLoader().getResource("arc_vacio.txt").toURI());
+
+            // Crear instancia de la clase a probar
+            App calculo = new App();
+            int total = calculo.Sumar_vtas(path.toString());
+            
+            
+            // Verificar el resultado
+            assertEquals(-1, total, "El total de la suma debe ser -1 ya que el archivo está vacío");
+
+        } catch (Exception e) {
+            fail("Se presentó un error y hubo una excepción\n" + e);
+        }
+
+    }
 
 }
