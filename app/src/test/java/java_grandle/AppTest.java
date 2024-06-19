@@ -46,14 +46,12 @@ class AppTest {
             assertEquals(100, total, "El total de la suma de los registros del archivo es 100");
 
         } catch (Exception e) {
-            fail("Se presentó un error y hubo una excepción\n" + e);
+            fail("Se presentó un error y hubo una excepción en el test de arch suma\n" + e);
         }
     
     }
 
-     
-
-    @Test void probar_arch_vacio(){
+    @Test void probar_arc_vacio(){
         try {
 
             // Obtener el archivo desde el classpath
@@ -68,9 +66,36 @@ class AppTest {
             assertEquals(-1, total, "El total de la suma debe ser -1 ya que el archivo está vacío");
 
         } catch (Exception e) {
-            fail("Se presentó un error y hubo una excepción\n" + e);
+            fail("Se presentó un error y hubo una excepción en el test de archivo vacio\n" + e);
+        }
+    }
+
+     
+
+    
+    //pruebas de arreglos 
+
+    @Test void probar_Cargar_ventas(){
+        try {
+
+            // Obtener el archivo desde el classpath
+            Path path = Paths.get(getClass().getClassLoader().getResource("vtas.txt").toURI());
+
+            // Crear instancia de la clase a probar
+            App taller = new App();
+            int[] v_vtas = taller.Cargar_ventas(path.toString());
+            int[] v_esperado = {10, 20, 30, 40};
+            
+            
+            // Verificar el resultado
+            assertArrayEquals(v_esperado, v_vtas, "El vector resultante debe ser [10, 20, 30, 40] ");
+
+        } catch (Exception e) {
+            fail("Se presentó un error y hubo una excepción en el test cargar ventas\n" + e);
         }
 
     }
+
+
 
 }

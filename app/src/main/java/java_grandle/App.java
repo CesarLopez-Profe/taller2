@@ -42,26 +42,52 @@ public class App {
             }
             dat_vtas.close();
             return total_vtas;
-
             
         } 
-        
+
         catch (Exception e) {
             // TODO: handle exception
             return 0;
         }
     }
 
-    /*     
-    public double Obtener_litros(int cms_cub){
-        //ponga su código acá
+    public int[] Cargar_ventas(String archivo){
+
+        int[] arr_vtas = new int[4];
+
+        try {
+            
+            byte ind = 0;
+            
+            BufferedReader dat_vtas = new BufferedReader(new FileReader(archivo));
+            String linea = dat_vtas.readLine();
+
+            while(linea !=null){
+                arr_vtas[ind] = Integer.parseInt(linea);
+                ind++;
+                linea = dat_vtas.readLine();
+            }
+
+            dat_vtas.close();
+            return arr_vtas;
+        } 
+        
+        catch (Exception e) {
+            // TODO: handle exception
+            return arr_vtas;    
+        }
+
     }
-    */
 
 
     public static void main(String[] args) {
         //System.out.println(new App().getGreeting());
-        System.out.println("El total de ventas fue: " + new App().Sumar_vtas("app\\src\\main\\resources\\vtas.txt"));
-        System.out.println("El total de ventas fue: " + new App().Sumar_vtas("app\\src\\main\\resources\\arc_vacio.txt"));
+        //System.out.println("El total de ventas fue: " + new App().Sumar_vtas("app\\src\\main\\resources\\vtas.txt"));
+        //System.out.println("El total de ventas fue: " + new App().Sumar_vtas("app\\src\\main\\resources\\arc_vacio.txt"));
+        
+        int[] arr = new App().Cargar_ventas("app\\src\\main\\resources\\vtas.txt");
+        for (byte i = 0; i<arr.length; i++){
+            System.out.println(arr[i] +"\t");
+        }
     }
 }
